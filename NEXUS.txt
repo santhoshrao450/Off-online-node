@@ -1,0 +1,30 @@
+Ways to move artifacts to NEXUS
+
+1.mvn deploy:deploy-file -DgroupId=<group-id> \
+  -DartifactId=<artifact-id> \
+  -Dversion=<version> \
+  -Dpackaging=<type-of-packaging> \
+  -Dfile=<path-to-file> \
+  -DrepositoryId=<id-to-map-on-server-section-of-settings.xml> \
+  -Durl=<url-of-the-repository-to-deploy>
+
+
+
+
+2.
+scp -r target/acb.jar user@<nexus_host>:/location/of/the/artifacts/
+
+
+3.
+curl -v -u user:password --upload-file abc.jar http://localhost:8081/nexus/content/repositories/releases/org/foo/1.0/abc-1.0.jar
+
+4.Using RESTAPI
+
+
+curl -v -F r=releases -F hasPom=false -F e=jar -F g=com.test -F a=project -F v=1.0 -F p=jar -F file=@project-1.0.jar -u user:password http://nexusurl link
+
+
+5.MAVENIZE
+
+
+6.Edit the ant script(set the nexus distribution management) write small pom file 
